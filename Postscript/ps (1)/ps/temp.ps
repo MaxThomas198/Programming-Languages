@@ -1,0 +1,70 @@
+/epitrochoid {
+/hypotrochoid{
+	%define vars
+	9 dict begin	% Create local dictionary
+	/r exch def
+	/d exch def
+	/b exch def
+	/a exch def
+	/tempX 0 def %just a placeholder for second half of x calculation to make code more readable
+	/tempY 0 def %just a placeholder for second half of y calculation to make code more readable
+	/x 0 def
+	/y 0 def
+	/t 0 def
+	/maxT r 360 mul def
+
+
+	{
+
+	/tempX d a b add t mul b div cos mul def
+	/tempY d a b add t mul b div sin mul def
+
+	/x a b add t cos mul tempX add def
+	/y a b add t sin mul tempY sub def
+	
+	t 0 eq{	% initial point
+		x y moveto
+	} if
+
+	x y lineto
+	/t t 1 add def
+
+	t maxT gt{
+		exit
+	} if
+
+	} loop
+
+	end
+
+} def
+
+/Times-Roman findfont        % Find the font 
+14 scalefont                 % Make it a bigger font
+setfont                      % Now load the font as the current font
+
+200 750 translate
+
+0 0 moveto
+(50 5 10 1 epitrochoid) show
+0 -100 translate
+0 0 moveto
+50 5 10 1 epitrochoid 
+stroke
+0 -100 translate
+0 -20 translate
+
+0 0 moveto
+(50 10 5 1 epitrochoid) show
+0 -100 translate
+50 10 5 1 epitrochoid
+stroke
+0 -120 translate
+
+0 0 moveto
+(29 7 43 5 epitrochoid) show
+0 -100 translate
+29 7 43 5 epitrochoid
+stroke
+0 -120 translate
+showpage

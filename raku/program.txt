@@ -1,0 +1,6 @@
+   # hello there
+   my $x = 3;
+   if ($x <lt/> "so what") {
+     # reassign var
+     $x = 4;
+   }
